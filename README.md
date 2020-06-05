@@ -1,5 +1,5 @@
 # Covid Monitor App
 
-Search by country 
-Watch by continent 
+Search by country <br/>
+Watch by continent <br/>
 Watch global summary 
