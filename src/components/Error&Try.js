@@ -5,7 +5,7 @@ import {Button} from 'react-native-elements';
 const ErrornTry = ({onPress}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.txt}>Data Fetching Error</Text>
+      <Text style={styles.txt}>Data Fetching Failed</Text>
       <Button
         onPress={onPress}
         title="Try Again"
@@ -22,9 +22,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
   txt: {
-    color: 'lightgray',
+    color: 'dimgray',
     fontSize: 25,
   },
   buttonText: {
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 300,
     margin: 20,
-    borderColor: 'lightgray',
+    borderColor: 'dimgray',
     borderRadius: 10,
   },
 });

@@ -53,12 +53,13 @@ const SummaryDetailCard = ({
 const styles = StyleSheet.create({
   surface: {
     padding: 28,
-    height: '42%',
+    height: '40%',
     width: '80%',
     elevation: 8,
     alignSelf: 'center',
     margin: 150,
     borderRadius: 28,
+    flex: 1,
   },
   text: {
     fontSize: 17,

@@ -38,6 +38,7 @@ const AppState = (props) => {
       const res = await axios.get('https://api.covid19api.com/countries');
       dispatch({type: GET_COUNTRIES, payload: res.data});
     } catch (err) {
+      console.log(err);
       dispatch({type: ERROR, payload: true});
     }
   };
@@ -57,6 +58,7 @@ const AppState = (props) => {
       }
     } catch (err) {
       console.log(err);
+      dispatch({type: ERROR, payload: true});
     }
   };
 
@@ -71,6 +73,7 @@ const AppState = (props) => {
       dispatch({type: GET_GLOBAL, payload: {Date, Global}});
     } catch (err) {
       console.log(err);
+      dispatch({type: ERROR, payload: true});
     }
   };
 
@@ -83,6 +86,7 @@ const AppState = (props) => {
       dispatch({type: GET_CONTINENT, payload: res.data.countries, continent});
     } catch (err) {
       console.log(err);
+      dispatch({type: ERROR, payload: true});
     }
   };
   // Set Loadings

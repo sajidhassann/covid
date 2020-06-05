@@ -27,7 +27,6 @@ const SearchCountry = ({navigation: {navigate}}) => {
   const keyExtractor = (item, index) => index.toString();
 
   const onClick = () => {
-    setError(false);
     getCountries();
   };
 
@@ -75,6 +74,10 @@ const SearchCountry = ({navigation: {navigate}}) => {
     }
   };
 
+  if (error) {
+    return <ErrorMsg onPress={onClick} />;
+  }
+
   return (
     <View style={styles.container}>
       <SearchBar
@@ -85,23 +88,18 @@ const SearchCountry = ({navigation: {navigate}}) => {
         onChangeText={onChangeText}
       />
       <Divider />
-
-      {error ? (
-        <ErrorMsg onPress={onClick} />
-      ) : (
-        <FlatList
-          ListEmptyComponent={
-            <View style={styles.indicator}>
-              <ActivityIndicator size="large" color="dimgray" />
-            </View>
-          }
-          showsVerticalScrollIndicator={false}
-          data={filtered === null ? countries : filtered}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-          extraData={current}
-        />
-      )}
+      <FlatList
+        ListEmptyComponent={
+          <View style={styles.indicator}>
+            <ActivityIndicator size="large" color="dimgray" />
+          </View>
+        }
+        showsVerticalScrollIndicator={false}
+        data={filtered === null ? countries : filtered}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        extraData={current}
+      />
     </View>
   );
 };

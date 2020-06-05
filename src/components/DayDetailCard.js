@@ -39,10 +39,11 @@ const DayDetailCard = ({
 const styles = StyleSheet.create({
   surface: {
     padding: 28,
-    height: '35%',
+    height: '40%',
     width: '80%',
     elevation: 8,
     borderRadius: 28,
+    alignSelf: 'center',
   },
   text: {
     fontSize: 17,

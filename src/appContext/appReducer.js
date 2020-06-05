@@ -20,16 +20,19 @@ export default (state, action) => {
         ...state,
         countries: action.payload,
         loading: false,
+        error: false,
       };
     case GET_COUNTRY_DETAIL:
       return {
         ...state,
         detail: action.payload,
+        error: false,
       };
     case GET_GLOBAL:
       return {
         ...state,
         summary: action.payload,
+        error: false,
       };
     case GET_CONTINENT:
       const {continent, payload} = action;
@@ -39,6 +42,7 @@ export default (state, action) => {
           ...state.continents,
           [continent]: payload,
         },
+        error: false,
       };
     case SET_LOADING:
       return {
