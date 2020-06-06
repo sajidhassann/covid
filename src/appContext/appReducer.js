@@ -64,7 +64,11 @@ export default (state, action) => {
         ...state,
         filtered: state.countries.filter((country) => {
           const regex = new RegExp(`${action.payload}`, 'gi');
-          return country.Country.match(regex) || country.Slug.match(regex);
+          return (
+            country.Country.match(regex) ||
+            country.Slug.match(regex) ||
+            country.ISO2.match(regex)
+          );
         }),
       };
     case CLEAR_FILTER:

@@ -47,14 +47,14 @@ const AppState = (props) => {
   const getDetail = async (country) => {
     try {
       const res = await axios.get(
-        `https://api.covid19api.com/dayone/country/${country}`,
+        `https://api.covid19api.com/total/dayone/country/${country}`,
       );
       const {data} = res;
       const len = data.length;
       if (len === 0) {
         dispatch({type: GET_COUNTRY_DETAIL, payload: []});
       } else {
-        dispatch({type: GET_COUNTRY_DETAIL, payload: [data[0], data[len - 1]]});
+        dispatch({type: GET_COUNTRY_DETAIL, payload: data.reverse()});
       }
     } catch (err) {
       console.log(err);
@@ -67,10 +67,13 @@ const AppState = (props) => {
     try {
       const res = await axios.get('https://api.covid19api.com/summary');
       const {
-        data: {Date, Global},
+        data: {Date, Global, Countries},
       } = res;
 
-      dispatch({type: GET_GLOBAL, payload: {Date, Global}});
+      dispatch({
+        type: GET_GLOBAL,
+        payload: [{Country: 'Global', ...Global, Date}, ...Countries],
+      });
     } catch (err) {
       console.log(err);
       dispatch({type: ERROR, payload: true});

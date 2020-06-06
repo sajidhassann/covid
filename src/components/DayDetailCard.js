@@ -13,7 +13,8 @@ const DayDetailCard = ({
       <View style={styles.view}>
         <Text style={styles.text}>Date:</Text>
         <Text style={[styles.text, {color: 'indigo'}]}>
-          {Date.split('T')[0].split('-').reverse().join('-')}
+          {/* {Date.split('T')[0].split('-').reverse().join('-')} */}
+          {Date.split('T')[0].split('-').reverse().join('/')}
         </Text>
       </View>
       <View style={styles.view}>
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     elevation: 8,
     borderRadius: 28,
     alignSelf: 'center',
+    flex: 1,
   },
   text: {
     fontSize: 17,

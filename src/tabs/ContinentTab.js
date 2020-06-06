@@ -7,10 +7,11 @@ import ErrorMsg from '../components/Error&Try';
 
 const ContinentTab = ({continent}) => {
   const appContext = useContext(AppContext);
-  const {getContinent, continents, error} = appContext;
+  const {getContinent, continents, error, setError} = appContext;
   const keyExtractor = (item, index) => index.toString();
 
   const onClick = async () => {
+    setError(false);
     await getContinent(continent);
   };
 
@@ -36,7 +37,8 @@ const ContinentTab = ({continent}) => {
         data={continents === null ? null : continents[continent]}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        extraData={continents}
+        ListFooterComponent={<View style={styles.divider}></View>}
+        // extraData={continents}
       />
     </View>
   );
@@ -46,7 +48,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-    // paddingLeft: 20,
   },
   indicator: {
     backgroundColor: 'white',
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   cardView: {
     marginTop: 60,
   },
-  divider: {margin: 30},
+  divider: {marginBottom: 40},
 });
 
 export default ContinentTab;

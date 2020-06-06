@@ -1,16 +1,25 @@
 import React, {useContext, useMemo} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, FlatList} from 'react-native';
 import DayDetailCard from '../components/DayDetailCard';
 import AppContext from '../appContext/appContext';
 import {ActivityIndicator} from 'react-native-paper';
 import ErrorMsg from '../components/Error&Try';
-import {ScrollView} from 'react-native-gesture-handler';
+// import {ScrollView} from 'react-native-gesture-handler';
 
 const CountryDetails = ({navigation: {setOptions}}) => {
   const appContext = useContext(AppContext);
-  const {getDetail, detail, current, clearCurrent, error} = appContext;
+  const {
+    getDetail,
+    detail,
+    current,
+    clearCurrent,
+    error,
+    setError,
+  } = appContext;
+  const keyExtractor = (item, index) => index.toString();
 
   const onClick = () => {
+    setError(false);
     getDetail(current.Slug);
     // clearCurrent();
   };
@@ -19,6 +28,14 @@ const CountryDetails = ({navigation: {setOptions}}) => {
     getDetail(current.Slug);
     // clearCurrent();
   }, []);
+
+  const renderItem = ({item, index}) => (
+    <DayDetailCard
+      title={'Day ' + (detail.length - index)}
+      data={item}
+      margin={40}
+    />
+  );
 
   if (error) {
     return <ErrorMsg onPress={onClick} />;
@@ -41,7 +58,21 @@ const CountryDetails = ({navigation: {setOptions}}) => {
   }
   return (
     <View style={styles.container}>
-      <ScrollView
+      <FlatList
+        data={detail}
+        showsVerticalScrollIndicator={false}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        ListFooterComponent={<View style={styles.divider}></View>}
+      />
+    </View>
+  );
+  {
+    /* <View style={styles.divider}></View> */
+  }
+
+  {
+    /* <ScrollView
         showsVerticalScrollIndicator={false}
         // horizontal={true}
         style={{flex: 1}}
@@ -55,9 +86,8 @@ const CountryDetails = ({navigation: {setOptions}}) => {
           data={detail[1]}
           margin={0}
         />
-      </ScrollView>
-    </View>
-  );
+      </ScrollView> */
+  }
 };
 
 const styles = StyleSheet.create({
@@ -74,7 +104,7 @@ const styles = StyleSheet.create({
   cardView: {
     marginTop: 60,
   },
-  divider: {margin: 30},
+  divider: {marginBottom: 40},
   nodata: {
     flex: 1,
     justifyContent: 'center',

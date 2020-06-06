@@ -27,6 +27,7 @@ const SearchCountry = ({navigation: {navigate}}) => {
   const keyExtractor = (item, index) => index.toString();
 
   const onClick = () => {
+    setError(false);
     getCountries();
   };
 
@@ -55,7 +56,7 @@ const SearchCountry = ({navigation: {navigate}}) => {
       style={styles.item}
       key={index}>
       <View style={styles.childItem}>
-        <Text style={styles.text}>{item.Country}</Text>
+        <Text style={styles.text}>{item.Country + ' ' + item.ISO2}</Text>
         <Icon
           name="arrow-right"
           color="dimgray"
@@ -98,7 +99,7 @@ const SearchCountry = ({navigation: {navigate}}) => {
         data={filtered === null ? countries : filtered}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        extraData={current}
+        // extraData={current}
       />
     </View>
   );

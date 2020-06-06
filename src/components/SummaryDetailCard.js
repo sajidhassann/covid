@@ -3,8 +3,9 @@ import {View, StyleSheet} from 'react-native';
 import {Surface, Text} from 'react-native-paper';
 
 const SummaryDetailCard = ({
-  date,
   summary: {
+    Country,
+    Date,
     NewConfirmed,
     TotalConfirmed,
     NewDeaths,
@@ -15,11 +16,12 @@ const SummaryDetailCard = ({
 }) => {
   return (
     <Surface style={styles.surface}>
-      <Text style={styles.header}>Global Summary</Text>
+      <Text style={styles.header}>{Country}</Text>
       <View style={styles.view}>
         <Text style={styles.text}>Date:</Text>
         <Text style={[styles.text, {color: 'indigo'}]}>
-          {date.split('T')[0].split('-').reverse().join('-')}
+          {/* {Date.split('T')[0].split('-').reverse().join('-')} */}
+          {Date.split('T')[0].split('-').reverse().join('/')}
         </Text>
       </View>
       <View style={styles.view}>
@@ -57,7 +59,8 @@ const styles = StyleSheet.create({
     width: '80%',
     elevation: 8,
     alignSelf: 'center',
-    margin: 150,
+    // margin: 150,
+    marginTop: 40,
     borderRadius: 28,
     flex: 1,
   },

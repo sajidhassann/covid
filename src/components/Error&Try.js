@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderWidth: 2,
-    borderStyle: 'dotted',
+    // borderStyle: 'dotted',
     height: 60,
     width: 300,
     margin: 20,
