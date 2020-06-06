@@ -15,6 +15,7 @@ import {
   GET_CONTINENT,
   CLEAR_DETAIL,
   CLEAR_SUMMARY,
+  FILTER_SUMMARY,
   ERROR,
 } from '../types';
 
@@ -26,6 +27,7 @@ const AppState = (props) => {
     current: null,
     detail: null,
     filtered: null,
+    filteredSummary: null,
     loading: true,
     error: false,
   };
@@ -112,12 +114,17 @@ const AppState = (props) => {
     dispatch({type: FILTER_COUNTRIES, payload: query});
   };
 
+  // Filter Summary
+  const filterSummary = (query) => {
+    dispatch({type: FILTER_SUMMARY, payload: query});
+  };
+
   // Clear Detail
   const clearDetail = () => {
     dispatch({type: CLEAR_DETAIL});
   };
 
-  // Clear Summary
+  // Clear Summary Filter
   const clearSummary = () => {
     dispatch({type: CLEAR_SUMMARY});
   };
@@ -138,6 +145,7 @@ const AppState = (props) => {
         current: state.current,
         filtered: state.filtered,
         summary: state.summary,
+        filteredSummary: state.filteredSummary,
         loading: state.loading,
         detail: state.detail,
         continents: state.continents,
@@ -150,6 +158,7 @@ const AppState = (props) => {
         setCurrent,
         clearCurrent,
         filterCountries,
+        filterSummary,
         clearFilter,
         clearDetail,
         clearSummary,

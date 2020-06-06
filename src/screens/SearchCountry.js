@@ -79,6 +79,14 @@ const SearchCountry = ({navigation: {navigate}}) => {
     return <ErrorMsg onPress={onClick} />;
   }
 
+  if (countries === null) {
+    return (
+      <View style={styles.indicator}>
+        <ActivityIndicator size="large" color="dimgray" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <SearchBar
@@ -91,8 +99,8 @@ const SearchCountry = ({navigation: {navigate}}) => {
       <Divider />
       <FlatList
         ListEmptyComponent={
-          <View style={styles.indicator}>
-            <ActivityIndicator size="large" color="dimgray" />
+          <View style={styles.emptyView}>
+            <Text style={styles.txt}>Not Available</Text>
           </View>
         }
         showsVerticalScrollIndicator={false}
@@ -118,6 +126,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginLeft: 3,
   },
+  txt: {
+    fontSize: 30,
+  },
+  emptyView: {
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   childItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -126,11 +142,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   indicator: {
+    backgroundColor: 'white',
     flex: 1,
-    height: '100%',
-    marginTop: 40,
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
   },
 });
 

@@ -11,6 +11,7 @@ import {
   GET_CONTINENT,
   CLEAR_SUMMARY,
   ERROR,
+  FILTER_SUMMARY,
 } from '../types';
 
 export default (state, action) => {
@@ -71,6 +72,14 @@ export default (state, action) => {
           );
         }),
       };
+    case FILTER_SUMMARY:
+      return {
+        ...state,
+        filteredSummary: state.summary.filter((single) => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return single.Country.match(regex);
+        }),
+      };
     case CLEAR_FILTER:
       return {
         ...state,
@@ -79,7 +88,7 @@ export default (state, action) => {
     case CLEAR_SUMMARY:
       return {
         ...state,
-        summary: null,
+        filteredSummary: null,
       };
     case CLEAR_DETAIL:
       return {
